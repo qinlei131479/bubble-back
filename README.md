@@ -1,15 +1,15 @@
 <p align="center">
  <img src="https://img.shields.io/badge/Pig-3.8-success.svg" alt="Build Status">
- <img src="https://img.shields.io/badge/Spring%20Cloud-2024-blue.svg" alt="Coverage Status">
- <img src="https://img.shields.io/badge/Spring%20Boot-3.4-blue.svg" alt="Downloads">
+ <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status">
+ <img src="https://img.shields.io/badge/Spring%20Boot-2.7-blue.svg" alt="Downloads">
  <img src="https://img.shields.io/badge/Vue-3.4-blue.svg" alt="Downloads">
  <img src="https://img.shields.io/github/license/pig-mesh/pig"/>
- <img src="https://gitcode.com/pig-mesh/pig/star/badge.svg"/>
+ 
 </p>
 
 ## 概述
 
-**pig-ui** 是一个为 PIGCLOUD 微服务开发平台开发的前端项目。它利用了现代 Web 技术，包括 Vue.js 3、Element Plus 和 Vite，提供了一个健壮且高效的开发环境。
+**paopao-oa-back** 是一个微服务开发平台开发的前端项目。它利用了现代 Web 技术，包括 Vue.js 3、Element Plus 和 Vite，提供了一个健壮且高效的开发环境。
 
 ## 功能特性
 
@@ -28,6 +28,8 @@
 
 ### 使用文档
 
+npm install  
+npm run dev
 
 ## 浏览器支持
 
