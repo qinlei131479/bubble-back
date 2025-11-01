@@ -28,25 +28,12 @@
 
 ### 使用文档
 
-PIG 提供了详尽的部署文档 👉 [wiki.pig4cloud.com](https://wiki.pig4cloud.com)，涵盖开发环境配置、服务端启动、前端运行等关键步骤。
-
-重要的事情说三遍：
-
-- 🔥 [ 配套文档 wiki.pig4cloud.com](https://wiki.pig4cloud.com)
-- 🔥 [ 配套文档 wiki.pig4cloud.com](https://wiki.pig4cloud.com)
-- 🔥 [ 配套文档 wiki.pig4cloud.com](https://wiki.pig4cloud.com)
-
 
 ## 浏览器支持
 
 - 现代浏览器的最后两个版本。
 - 不支持 IE 11 及更低版本。
 
-## 贡献
-欢迎贡献！在开始之前，请阅读[贡献指南](https://www.yuque.com/pig4cloud/pig/lceu0v)。
 
 ## 许可证
 本项目采用 Apache-2.0 许可证。
-
-## 问题和反馈
-如果遇到任何问题，请在 [PIGCLOUD 问题追踪](https://gitee.com/log4j/pig/issues)上报告。

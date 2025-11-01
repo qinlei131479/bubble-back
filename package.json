@@ -1,8 +1,8 @@
 {
-	"name": "pig-ui",
+	"name": "paopao-oa-back",
 	"version": "3.9.0",
-	"description": "PIGCLOUD微服务开发平台",
-	"author": "pig4cloud",
+	"description": "企业级OA平台",
+	"author": "qinlei",
 	"license": "Apache-2.0",
 	"type": "module",
 	"scripts": {
