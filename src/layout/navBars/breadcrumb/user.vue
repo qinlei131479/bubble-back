@@ -47,7 +47,8 @@
 		</div>
 		<el-dropdown :show-timeout="70" :hide-timeout="50" @command="onHandleCommandClick">
 			<span class="layout-navbars-breadcrumb-user-link">
-				<img :src="userInfos.user.avatar" class="layout-navbars-breadcrumb-user-link-photo mr5" />
+				<img :src="userInfos.user.avatar"  v-if="userInfos.user.avatar" class="layout-navbars-breadcrumb-user-link-photo mr5" />
+        <img :src="logoMini" v-else class="layout-navbars-breadcrumb-user-link-photo mr5" />
 				{{ userInfos.user.username }}
 				<el-icon class="el-icon--right">
 					<ele-ArrowDown />
@@ -80,6 +81,7 @@ import { Session, Local } from '/@/utils/storage';
 import { formatAxis } from '/@/utils/formatTime';
 import { useMsg } from '/@/stores/msg';
 
+import logoMini from '/@/assets/logo-mini.svg';
 // 引入组件
 const GlobalWebsocket = defineAsyncComponent(() => import('/@/components/Websocket/index.vue'));
 const UserNews = defineAsyncComponent(() => import('/@/layout/navBars/breadcrumb/userNews.vue'));

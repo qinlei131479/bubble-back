@@ -1,6 +1,6 @@
 {
-	"name": "paopao-oa-back",
-	"version": "3.9.0",
+	"name": "bubble-back",
+	"version": "4.0.0",
 	"description": "企业级OA平台",
 	"author": "qinlei",
 	"license": "Apache-2.0",
@@ -74,9 +74,6 @@
 		"last 2 versions",
 		"not dead"
 	],
-	"bugs": {
-		"url": "https://pig4cloud.com"
-	},
 	"engines": {
 		"node": ">=18.0.0",
 		"npm": ">= 8.0.0"
@@ -87,9 +84,5 @@
 		"vuejs/vue-next",
 		"element-ui",
 		"element-plus"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://gitee.com/log4j/pig-ui"
-	}
+	]
 }

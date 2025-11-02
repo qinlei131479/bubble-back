@@ -1,14 +1,14 @@
 services:
-  pig-ui:
+  bubble-back:
     build:
       context: .
     restart: always
-    container_name: pig-ui
-    image: pig-ui
+    container_name: bubble-back
+    image: bubble-back
     networks:
       - spring_cloud_default
     external_links:
-      - pig-gateway
+      - bubble-gateway
     ports:
       - 80:80
 
