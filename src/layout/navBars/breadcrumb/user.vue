@@ -11,11 +11,11 @@
 				</el-dropdown-menu>
 			</template>
 		</el-dropdown>
-		<div class="layout-navbars-breadcrumb-user-icon" @click="onLockClick">
-			<el-icon :title="$t('layout.threeLockScreenTime')">
-				<ele-Lock />
-			</el-icon>
-		</div>
+<!--		<div class="layout-navbars-breadcrumb-user-icon" @click="onLockClick">-->
+<!--			<el-icon :title="$t('layout.threeLockScreenTime')">-->
+<!--				<ele-Lock />-->
+<!--			</el-icon>-->
+<!--		</div>-->
 		<div class="layout-navbars-breadcrumb-user-icon" @click="onSearchClick">
 			<el-icon :title="$t('user.title2')">
 				<ele-Search />

@@ -93,13 +93,13 @@ export const useThemeConfig = defineStore('themeConfig', {
 			// 是否开启 TagsView 共用
 			isShareTagsView: false,
 			// 是否开启 Footer 底部版权信息
-			isFooter: true,
+			isFooter: false,
 			// 是否开启灰色模式
 			isGrayscale: false,
 			// 是否开启色弱模式
 			isInvert: false,
 			// 是否开启水印
-			isWartermark: true,
+			isWartermark: false,
 			// 水印文案
 			wartermarkText: 'bubble',
 
@@ -133,7 +133,7 @@ export const useThemeConfig = defineStore('themeConfig', {
 			 * 全局网站标题 / 副标题
 			 */
 			// 网站主标题（菜单导航、浏览器当前网页标题、登录form顶部右侧）
-			globalTitle: 'BUBBLE BACKED',
+			globalTitle: 'BUBBLE BACKEND',
 			// 网站副标题（登录左侧底部页顶部文字）
 			globalViceTitle: 'bubble oa开发框架',
 			// 网站副标题（登录页顶部文字）
