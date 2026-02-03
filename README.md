@@ -1,12 +1,14 @@
+<p align="center" style="font-family: '楷体'; font-size: 30px;">智能如泡，聚变未来</p>
+
 <p align="center">
- <img src="https://img.shields.io/badge/bubble-4.0-success.svg" alt="Build Status">
- <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status">
- <img src="https://img.shields.io/badge/Spring%20Boot-2.7-blue.svg" alt="Downloads">
- <img src="https://img.shields.io/badge/Vue-3.4-blue.svg" alt="Downloads">
+ <img src="https://img.shields.io/badge/AgetBubbles-0.1-success.svg" alt="Build Status">
+ <img src="https://img.shields.io/badge/Spring%20Cloud-2025-blue.svg" alt="Coverage Status">
+ <img src="https://img.shields.io/badge/Spring%20Boot-3.5-blue.svg" alt="Downloads">
+ <img src="https://img.shields.io/badge/Vue-3.5-blue.svg" alt="Downloads">
 
 </p>
 
-## 项目概述（智能如泡，聚变未来）
+## 项目概述
 
 **AgetBubbles** 是一个面向下一代人机交互的智能体原生平台，将大语言模型、RAG 检索增强生成与自主智能体技术深度融合，
 以“泡泡”为核心理念，构建轻量化、可组合、自进化的 AI 应用生态。平台旨在让每个想法都能如泡泡般轻盈萌发，
@@ -26,6 +28,7 @@ Vite，提供了一个健壮且高效的开发环境。
 - **Tailwind CSS**: 使用 Tailwind CSS 进行样式设计。
 
 ## ✨ 核心特性（未来规划）
+
 ### 智能体即泡泡（Agent-as-Bubble）架构
 
 - **轻量封装**：每个智能体被封装为独立“泡泡”，具备自治的感知-决策-执行循环
@@ -36,9 +39,9 @@ Vite，提供了一个健壮且高效的开发环境。
 
 - **大模型中枢**：集成多模态 LLM 统一调度层，支持混合推理与成本优化
 - **RAG 增强矩阵**：
-智能文档解析与向量化流水线
-多源检索融合（向量+关键词+图检索）
-基于会话的上下文动态增强
+  - 智能文档解析与向量化流水线
+  - 多源检索融合（向量+关键词+图检索）
+  - 基于会话的上下文动态增强
 - **智能体运行时**：内置推理框架、工具调用库与记忆管理系统
 
 ### 泡泡协作网络
@@ -77,6 +80,7 @@ npm run dev
 - 不支持 IE 11 及更低版本。
 
 ## 🚀 平台愿景
-AgetBubbles 不止是一个工具平台，更是一个 “智能体生长系统” 。 
+
+AgetBubbles 不止是一个工具平台，更是一个 “智能体生长系统” 。
 我们相信未来的 AI 应用将由无数个小型、专业、可交互的智能体“泡泡”有机组成。
 无论是个人开发者还是企业团队，都能在这里快速孕育、培育和释放智能体的价值，让 AI 如气泡般自然涌现，融入每一个工作与生活场景。
