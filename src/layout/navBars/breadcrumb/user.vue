@@ -81,7 +81,7 @@ import { Session, Local } from '/@/utils/storage';
 import { formatAxis } from '/@/utils/formatTime';
 import { useMsg } from '/@/stores/msg';
 
-import logoMini from '/@/assets/logo-mini.svg';
+import logoMini from '/src/assets/user.png';
 // 引入组件
 const GlobalWebsocket = defineAsyncComponent(() => import('/@/components/Websocket/index.vue'));
 const UserNews = defineAsyncComponent(() => import('/@/layout/navBars/breadcrumb/userNews.vue'));
