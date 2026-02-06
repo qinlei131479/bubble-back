@@ -158,6 +158,17 @@
 	text-decoration: none;
 }
 
+// 下拉弹出菜单中的激活项高亮（覆盖所有 popper 主题）
+.el-popper {
+	.el-menu .el-menu-item.is-active {
+		background-color: var(--el-color-primary-light-9) !important;
+		color: var(--el-color-primary) !important;
+	}
+	.el-menu .el-sub-menu.is-active > .el-sub-menu__title {
+		color: var(--el-color-primary) !important;
+	}
+}
+
 // 水平菜单、横向菜单折叠背景色
 .el-popper.is-pure.is-light {
 	// 水平菜单
