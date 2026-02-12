@@ -46,6 +46,18 @@
     </el-row>
     <el-row>
       <el-col :span="12" class="mb20">
+        <el-form-item label="公共包名" prop="packageCommonName">
+          <el-input placeholder="公共包名,不填默认项目包名" v-model="dataForm.packageCommonName"></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12" class="mb20">
+        <el-form-item label="实体包名" prop="packageEntityName">
+          <el-input placeholder="实体包名,不填默认项目包名" v-model="dataForm.packageEntityName"></el-input>
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="12" class="mb20">
         <el-form-item prop="functionName">
           <template #label>
             <span>功能名</span>
@@ -130,6 +142,8 @@ const dataForm = reactive({
   backendPath: '',
   frontendPath: '',
   packageName: '',
+  packageCommonName:'',
+  packageEntityName:'',
   email: '',
   author: '',
   version: '',
