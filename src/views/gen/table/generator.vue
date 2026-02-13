@@ -162,7 +162,6 @@ const getTable = (dsName: string, tableName: string) => {
   loading.value = true;
   useTableApi(dsName, tableName)
       .then((res) => {
-        console.log(res.data)
         Object.assign(dataForm, res.data);
         let list = res.data.groupList;
         dataForm.style = dataForm.style==='0'?'1':dataForm.style;
