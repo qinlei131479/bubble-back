@@ -3,14 +3,15 @@
     <div class="layout-padding-auto layout-padding-view">
       <el-row v-show="showSearch">
         <el-form :model="state.queryForm" ref="queryRef" :inline="true" @keyup.enter="getDataList">
-      <el-form-item label="数据源名称" prop="name" >
-        <el-input placeholder="请输入数据源名称" v-model="state.queryForm.name" />
-      </el-form-item>
-      <el-form-item label="数据库类型: mysql, postgresql, oracle, sqlserver等" prop="dsType">
-            <el-select v-model="state.queryForm.dsType" placeholder="请选择数据库类型: mysql, postgresql, oracle, sqlserver等">
-              <el-option label="请选择">0</el-option>
+          <el-form-item label="数据源名称" prop="name">
+            <el-input placeholder="请输入数据源名称" v-model="state.queryForm.name"/>
+          </el-form-item>
+          <el-form-item label="数据库类型" prop="dsType">
+            <el-select v-model="state.queryForm.modelType" placeholder="请选择类型">
+              <el-option :key="item.value" :label="item.label" :value="item.value"
+                         v-for="item in aig_ds_type"/>
             </el-select>
-      </el-form-item>
+          </el-form-item>
           <el-form-item>
             <el-button icon="search" type="primary" @click="getDataList">
               查 询
@@ -22,73 +23,73 @@
       <el-row>
         <div class="mb8" style="width: 100%">
           <el-button icon="folder-add" type="primary" class="ml10" @click="formDialogRef.openDialog()"
-            v-auth="'agi_datasource_add'">
+                     v-auth="'agi_datasource_add'">
             新 增
           </el-button>
-          <el-button plain icon="upload-filled" type="primary" class="ml10" @click="excelUploadRef.show()" v-auth="'sys_user_add'">
-						导 入
-					</el-button>
           <el-button plain :disabled="multiple" icon="Delete" type="primary"
-            v-auth="'agi_datasource_del'" @click="handleDelete(selectObjs)">
+                     v-auth="'agi_datasource_del'" @click="handleDelete(selectObjs)">
             删 除
           </el-button>
           <right-toolbar v-model:showSearch="showSearch" :export="'agi_datasource_export'"
-                @exportExcel="exportExcel" class="ml10 mr20" style="float: right;"
-            @queryTable="getDataList"></right-toolbar>
+                         @exportExcel="exportExcel" class="ml10 mr20" style="float: right;"
+                         @queryTable="getDataList"></right-toolbar>
         </div>
       </el-row>
-      <el-table :data="state.dataList" v-loading="state.loading" border 
-        :cell-style="tableStyle.cellStyle" :header-cell-style="tableStyle.headerCellStyle"
-				@selection-change="selectionChangHandle"
-        @sort-change="sortChangeHandle">
-        <el-table-column type="selection" width="40" align="center" />
-        <el-table-column type="index" label="#" width="40" />
-          <el-table-column prop="name" label="数据源名称"  show-overflow-tooltip/>
-          <el-table-column prop="url" label="jdbcurl"  show-overflow-tooltip/>
-          <el-table-column prop="username" label="用户名"  show-overflow-tooltip/>
-          <el-table-column prop="password" label="密码(加密)"  show-overflow-tooltip/>
-          <el-table-column prop="dsType" label="数据库类型: mysql, postgresql, oracle, sqlserver等"  show-overflow-tooltip/>
-          <el-table-column prop="confType" label="配置类型"  show-overflow-tooltip/>
-          <el-table-column prop="dsName" label="数据库名称"  show-overflow-tooltip/>
-          <el-table-column prop="instance" label="实例"  show-overflow-tooltip/>
-          <el-table-column prop="port" label="端口"  show-overflow-tooltip/>
-          <el-table-column prop="host" label="主机"  show-overflow-tooltip/>
-          <el-table-column prop="updateTime" label="更新时间"  show-overflow-tooltip/>
+      <el-table :data="state.dataList" v-loading="state.loading" border
+                :cell-style="tableStyle.cellStyle" :header-cell-style="tableStyle.headerCellStyle"
+                @selection-change="selectionChangHandle"
+                @sort-change="sortChangeHandle">
+        <el-table-column type="selection" width="40" align="center"/>
+        <el-table-column type="index" label="#" width="50"/>
+        <el-table-column prop="name" label="数据源名称" show-overflow-tooltip/>
+        <el-table-column prop="username" label="用户名" width="200"/>
+        <el-table-column prop="dsType" label="数据库类型" width="150">
+          <template #default="scope">
+            <dict-tag :options="aig_ds_type" :value="scope.row.dsType"></dict-tag>
+          </template>
+        </el-table-column>
+        <el-table-column prop="dsName" label="数据库名称" width="200"/>
+        <el-table-column prop="host" label="主机" width="200"/>
+        <el-table-column prop="port" label="端口" width="100"/>
+        <el-table-column prop="updateTime" label="更新时间" width="200"/>
         <el-table-column label="操作" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" text type="primary" v-auth="'agi_datasource_edit'"
-              @click="formDialogRef.openDialog(scope.row.id)">编辑</el-button>
-            <el-button icon="delete" text type="primary" v-auth="'agi_datasource_del'" @click="handleDelete([scope.row.id])">删除</el-button>
+                       @click="formDialogRef.openDialog(scope.row.id)">编辑
+            </el-button>
+            <el-button icon="delete" text type="primary" v-auth="'agi_datasource_del'"
+                       @click="handleDelete([scope.row.id])">删除
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
-      <pagination @size-change="sizeChangeHandle" @current-change="currentChangeHandle" v-bind="state.pagination" />
+      <pagination @size-change="sizeChangeHandle" @current-change="currentChangeHandle" v-bind="state.pagination"/>
     </div>
 
     <!-- 编辑、新增  -->
-    <form-dialog ref="formDialogRef" @refresh="getDataList(false)" />
+    <form-dialog ref="formDialogRef" @refresh="getDataList(false)"/>
 
     <!-- 导入excel (需要在 upms-biz/resources/file 下维护模板) -->
     <upload-excel
-			ref="excelUploadRef"
-			title="导入"
-			url="/agi/datasource/import"
-      temp-url="/admin/sys-file/local/file/datasource.xlsx"
-			@refreshDataList="getDataList"
-		/>
+        ref="excelUploadRef"
+        title="导入"
+        url="/agi/datasource/import"
+        temp-url="/admin/sys-file/local/file/datasource.xlsx"
+        @refreshDataList="getDataList"
+    />
   </div>
 </template>
 
 <script setup lang="ts" name="systemDatasource">
-import { BasicTableProps, useTable } from "/@/hooks/table";
-import { fetchList, delObjs } from "/@/api/agi/datasource";
-import { useMessage, useMessageBox } from "/@/hooks/message";
-import { useDict } from '/@/hooks/dict';
+import {BasicTableProps, useTable} from "/@/hooks/table";
+import {fetchList, delObjs} from "/@/api/agi/datasource";
+import {useMessage, useMessageBox} from "/@/hooks/message";
+import {useDict} from '/@/hooks/dict';
 
 // 引入组件
 const FormDialog = defineAsyncComponent(() => import('./form.vue'));
 // 定义查询字典
-
+const {aig_ds_type} = useDict('aig_ds_type')
 // 定义变量内容
 const formDialogRef = ref()
 const excelUploadRef = ref();
@@ -111,7 +112,7 @@ const {
   sizeChangeHandle,
   sortChangeHandle,
   downBlobFile,
-	tableStyle
+  tableStyle
 } = useTable(state)
 
 // 清空搜索条件
@@ -125,12 +126,12 @@ const resetQuery = () => {
 
 // 导出excel
 const exportExcel = () => {
-  downBlobFile('/agi/datasource/export', Object.assign(state.queryForm, { ids: selectObjs }), 'datasource.xlsx')
+  downBlobFile('/agi/datasource/export', Object.assign(state.queryForm, {ids: selectObjs}), 'datasource.xlsx')
 }
 
 // 多选事件
 const selectionChangHandle = (objs: { id: string }[]) => {
-  selectObjs.value = objs.map(({ id }) => id);
+  selectObjs.value = objs.map(({id}) => id);
   multiple.value = !objs.length;
 };
 

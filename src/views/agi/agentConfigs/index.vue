@@ -1,6 +1,17 @@
 <template>
   <div class="layout-padding">
     <div class="layout-padding-auto layout-padding-view">
+      <el-row v-show="showSearch">
+        <el-form :model="state.queryForm" ref="queryRef" :inline="true" @keyup.enter="getDataList">
+          <el-form-item label="知识库名称" prop="name">
+            <el-input placeholder="请输入关键词" v-model="state.queryForm.name"/>
+          </el-form-item>
+          <el-form-item>
+            <el-button icon="search" type="primary" @click="getDataList">查 询</el-button>
+            <el-button icon="Refresh" @click="resetQuery">重 置</el-button>
+          </el-form-item>
+        </el-form>
+      </el-row>
       <el-row>
         <div class="mb8" style="width: 100%">
           <el-button icon="folder-add" type="primary" class="ml10" @click="formDialogRef.openDialog()"
@@ -22,21 +33,17 @@
                 @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center"/>
         <el-table-column type="index" label="#" width="40"/>
-        <el-table-column prop="agentId" label="智能体ID" show-overflow-tooltip/>
-        <el-table-column prop="name" label="知识库名称" show-overflow-tooltip/>
+        <el-table-column prop="agentId" label="智能体" width="200"/>
+        <el-table-column prop="name" label="知识库名称" width="300"/>
         <el-table-column prop="description" label="知识库描述" show-overflow-tooltip/>
-        <el-table-column prop="icon" label="知识库图标" show-overflow-tooltip/>
-        <el-table-column prop="pics" label="知识库图片" show-overflow-tooltip/>
-        <el-table-column prop="examples" label="案例信息" show-overflow-tooltip/>
-        <el-table-column prop="configJson" label="json配置" show-overflow-tooltip/>
-        <el-table-column prop="defaultFlag" label="是否默认" show-overflow-tooltip>
+        <el-table-column prop="defaultFlag" label="是否默认" width="100">
           <template #default="scope">
             <el-tag v-if="scope.row.defaultFlag==1">是</el-tag>
             <el-tag type="info" v-else>否</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="createdAt" label="创建时间" show-overflow-tooltip/>
-        <el-table-column prop="updatedAt" label="更新时间" show-overflow-tooltip/>
+        <el-table-column prop="createdAt" label="创建时间" width="200"/>
+        <el-table-column prop="updatedAt" label="更新时间" width="200"/>
         <el-table-column label="操作" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" text type="primary" v-auth="'agi_agentConfigs_edit'"

@@ -4,68 +4,68 @@
       <el-row>
         <div class="mb8" style="width: 100%">
           <el-button icon="folder-add" type="primary" class="ml10" @click="formDialogRef.openDialog()"
-            v-auth="'agi_evaluationResults_add'">
+                     v-auth="'agi_evaluationResults_add'">
             新 增
           </el-button>
-          <el-button plain icon="upload-filled" type="primary" class="ml10" @click="excelUploadRef.show()" v-auth="'sys_user_add'">
-						导 入
-					</el-button>
           <el-button plain :disabled="multiple" icon="Delete" type="primary"
-            v-auth="'agi_evaluationResults_del'" @click="handleDelete(selectObjs)">
+                     v-auth="'agi_evaluationResults_del'" @click="handleDelete(selectObjs)">
             删 除
           </el-button>
           <right-toolbar v-model:showSearch="showSearch" :export="'agi_evaluationResults_export'"
-                @exportExcel="exportExcel" class="ml10 mr20" style="float: right;"
-            @queryTable="getDataList"></right-toolbar>
+                         @exportExcel="exportExcel" class="ml10 mr20" style="float: right;"
+                         @queryTable="getDataList"></right-toolbar>
         </div>
       </el-row>
-      <el-table :data="state.dataList" v-loading="state.loading" border 
-        :cell-style="tableStyle.cellStyle" :header-cell-style="tableStyle.headerCellStyle"
-				@selection-change="selectionChangHandle"
-        @sort-change="sortChangeHandle">
-        <el-table-column type="selection" width="40" align="center" />
-        <el-table-column type="index" label="#" width="40" />
-          <el-table-column prop="taskId" label="任务ID"  show-overflow-tooltip/>
-          <el-table-column prop="dbId" label="数据库ID"  show-overflow-tooltip/>
-          <el-table-column prop="benchmarkId" label="评估基准ID"  show-overflow-tooltip/>
-          <el-table-column prop="status" label="状态"  show-overflow-tooltip/>
-          <el-table-column prop="retrievalConfig" label="检索配置"  show-overflow-tooltip/>
-          <el-table-column prop="metrics" label="指标"  show-overflow-tooltip/>
-          <el-table-column prop="overallScore" label="得分"  show-overflow-tooltip/>
-          <el-table-column prop="totalQuestions" label="统计数量"  show-overflow-tooltip/>
-          <el-table-column prop="completedQuestions" label="完成数量"  show-overflow-tooltip/>
-          <el-table-column prop="completedAt" label="完成时间"  show-overflow-tooltip/>
-          <el-table-column prop="createdAt" label="创建时间"  show-overflow-tooltip/>
+      <el-table :data="state.dataList" v-loading="state.loading" border
+                :cell-style="tableStyle.cellStyle" :header-cell-style="tableStyle.headerCellStyle"
+                @selection-change="selectionChangHandle"
+                @sort-change="sortChangeHandle">
+        <el-table-column type="selection" width="40" align="center"/>
+        <el-table-column type="index" label="#" width="40"/>
+        <el-table-column prop="taskId" label="任务ID" show-overflow-tooltip/>
+        <el-table-column prop="dbId" label="数据库ID" show-overflow-tooltip/>
+        <el-table-column prop="benchmarkId" label="评估基准ID" show-overflow-tooltip/>
+        <el-table-column prop="status" label="状态" show-overflow-tooltip/>
+        <el-table-column prop="retrievalConfig" label="检索配置" show-overflow-tooltip/>
+        <el-table-column prop="metrics" label="指标" show-overflow-tooltip/>
+        <el-table-column prop="overallScore" label="得分" show-overflow-tooltip/>
+        <el-table-column prop="totalQuestions" label="统计数量" show-overflow-tooltip/>
+        <el-table-column prop="completedQuestions" label="完成数量" show-overflow-tooltip/>
+        <el-table-column prop="completedAt" label="完成时间" show-overflow-tooltip/>
+        <el-table-column prop="createdAt" label="创建时间" show-overflow-tooltip/>
         <el-table-column label="操作" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" text type="primary" v-auth="'agi_evaluationResults_edit'"
-              @click="formDialogRef.openDialog(scope.row.id)">编辑</el-button>
-            <el-button icon="delete" text type="primary" v-auth="'agi_evaluationResults_del'" @click="handleDelete([scope.row.id])">删除</el-button>
+                       @click="formDialogRef.openDialog(scope.row.id)">编辑
+            </el-button>
+            <el-button icon="delete" text type="primary" v-auth="'agi_evaluationResults_del'"
+                       @click="handleDelete([scope.row.id])">删除
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
-      <pagination @size-change="sizeChangeHandle" @current-change="currentChangeHandle" v-bind="state.pagination" />
+      <pagination @size-change="sizeChangeHandle" @current-change="currentChangeHandle" v-bind="state.pagination"/>
     </div>
 
     <!-- 编辑、新增  -->
-    <form-dialog ref="formDialogRef" @refresh="getDataList(false)" />
+    <form-dialog ref="formDialogRef" @refresh="getDataList(false)"/>
 
     <!-- 导入excel (需要在 upms-biz/resources/file 下维护模板) -->
     <upload-excel
-			ref="excelUploadRef"
-			title="导入"
-			url="/agi/evaluationResults/import"
-      temp-url="/admin/sys-file/local/file/evaluationResults.xlsx"
-			@refreshDataList="getDataList"
-		/>
+        ref="excelUploadRef"
+        title="导入"
+        url="/agi/evaluationResults/import"
+        temp-url="/admin/sys-file/local/file/evaluationResults.xlsx"
+        @refreshDataList="getDataList"
+    />
   </div>
 </template>
 
 <script setup lang="ts" name="systemEvaluationResults">
-import { BasicTableProps, useTable } from "/@/hooks/table";
-import { fetchList, delObjs } from "/@/api/agi/evaluationResults";
-import { useMessage, useMessageBox } from "/@/hooks/message";
-import { useDict } from '/@/hooks/dict';
+import {BasicTableProps, useTable} from "/@/hooks/table";
+import {fetchList, delObjs} from "/@/api/agi/evaluationResults";
+import {useMessage, useMessageBox} from "/@/hooks/message";
+import {useDict} from '/@/hooks/dict';
 
 // 引入组件
 const FormDialog = defineAsyncComponent(() => import('./form.vue'));
@@ -93,7 +93,7 @@ const {
   sizeChangeHandle,
   sortChangeHandle,
   downBlobFile,
-	tableStyle
+  tableStyle
 } = useTable(state)
 
 // 清空搜索条件
@@ -107,12 +107,12 @@ const resetQuery = () => {
 
 // 导出excel
 const exportExcel = () => {
-  downBlobFile('/agi/evaluationResults/export', Object.assign(state.queryForm, { ids: selectObjs }), 'evaluationResults.xlsx')
+  downBlobFile('/agi/evaluationResults/export', Object.assign(state.queryForm, {ids: selectObjs}), 'evaluationResults.xlsx')
 }
 
 // 多选事件
 const selectionChangHandle = (objs: { id: string }[]) => {
-  selectObjs.value = objs.map(({ id }) => id);
+  selectObjs.value = objs.map(({id}) => id);
   multiple.value = !objs.length;
 };
 

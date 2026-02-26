@@ -16,9 +16,7 @@
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button icon="search" type="primary" @click="getDataList">
-              查 询
-            </el-button>
+            <el-button icon="search" type="primary" @click="getDataList">查 询</el-button>
             <el-button icon="Refresh" @click="resetQuery">重 置</el-button>
           </el-form-item>
         </el-form>

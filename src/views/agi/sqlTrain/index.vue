@@ -49,7 +49,7 @@
             <dict-tag :options="yes_no_type" :value="scope.row.enabledFlag"></dict-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="createTime" label="创建时间" sortable="custom"  width="200"/>
+        <el-table-column prop="createTime" label="创建时间" sortable="custom" width="200"/>
         <el-table-column prop="updateTime" label="更新时间" width="200"/>
         <el-table-column label="操作" width="150">
           <template #default="scope">
@@ -88,7 +88,6 @@ import {useDict} from '/@/hooks/dict';
 // 引入组件
 const FormDialog = defineAsyncComponent(() => import('./form.vue'));
 // 定义查询字典
-
 const {yes_no_type} = useDict('yes_no_type')
 // 定义变量内容
 const formDialogRef = ref()

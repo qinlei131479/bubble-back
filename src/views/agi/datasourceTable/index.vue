@@ -7,9 +7,7 @@
         <el-input placeholder="请输入表名" v-model="state.queryForm.tableName" />
       </el-form-item>
           <el-form-item>
-            <el-button icon="search" type="primary" @click="getDataList">
-              查 询
-            </el-button>
+            <el-button icon="search" type="primary" @click="getDataList">查 询</el-button>
             <el-button icon="Refresh" @click="resetQuery">重 置</el-button>
           </el-form-item>
         </el-form>
@@ -20,9 +18,6 @@
             v-auth="'agi_datasourceTable_add'">
             新 增
           </el-button>
-          <el-button plain icon="upload-filled" type="primary" class="ml10" @click="excelUploadRef.show()" v-auth="'sys_user_add'">
-						导 入
-					</el-button>
           <el-button plain :disabled="multiple" icon="Delete" type="primary"
             v-auth="'agi_datasourceTable_del'" @click="handleDelete(selectObjs)">
             删 除
@@ -38,12 +33,12 @@
         @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center" />
         <el-table-column type="index" label="#" width="40" />
-          <el-table-column prop="dsId" label="数据源ID"  show-overflow-tooltip/>
-          <el-table-column prop="checkedFlag" label="是否选中，0否1是"  show-overflow-tooltip/>
+          <el-table-column prop="dsId" label="数据源"  show-overflow-tooltip/>
+          <el-table-column prop="checkedFlag" label="是否选中"  show-overflow-tooltip/>
           <el-table-column prop="tableName" label="表名"  show-overflow-tooltip/>
           <el-table-column prop="tableComment" label="表注释"  show-overflow-tooltip/>
           <el-table-column prop="customComment" label="表注释（自定义）"  show-overflow-tooltip/>
-          <el-table-column prop="embedding" label="表结构 embedding (JSON 数组字符串)"  show-overflow-tooltip/>
+          <el-table-column prop="embedding" label="表结构 embedding"  show-overflow-tooltip/>
           <el-table-column prop="updateTime" label="更新时间"  show-overflow-tooltip/>
         <el-table-column label="操作" width="150">
           <template #default="scope">
