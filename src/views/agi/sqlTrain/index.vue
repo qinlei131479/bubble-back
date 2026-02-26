@@ -5,12 +5,12 @@
         <el-form :model="state.queryForm" ref="queryRef" :inline="true" @keyup.enter="getDataList">
           <el-form-item label="数据源ID" prop="dsId">
             <el-select v-model="state.queryForm.dsId" placeholder="请选择数据源ID">
-              <el-option label="请选择">0</el-option>
+              <el-option label="默认" :key="0" value="0">0</el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="是否启用，0否；1是" prop="enabledFlag">
+          <el-form-item label="是否启用" prop="enabledFlag">
             <el-radio-group v-model="state.queryForm.enabledFlag">
-              <el-radio :label="item.value" v-for="(item, index) in common_status" border :key="index">{{ item.label }}
+              <el-radio :value="item.value" v-for="(item, index) in yes_no_type" border :key="index">{{ item.label }}
               </el-radio>
             </el-radio-group>
           </el-form-item>
@@ -26,10 +26,6 @@
                      v-auth="'agi_sqlTrain_add'">
             新 增
           </el-button>
-          <el-button plain icon="upload-filled" type="primary" class="ml10" @click="excelUploadRef.show()"
-                     v-auth="'sys_user_add'">
-            导 入
-          </el-button>
           <el-button plain :disabled="multiple" icon="Delete" type="primary"
                      v-auth="'agi_sqlTrain_del'" @click="handleDelete(selectObjs)">
             删 除
@@ -44,17 +40,17 @@
                 @selection-change="selectionChangHandle"
                 @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center"/>
-        <el-table-column type="index" label="#" width="40"/>
-        <el-table-column prop="dsId" label="数据源ID" show-overflow-tooltip/>
+        <el-table-column type="index" label="#" width="50"/>
+        <el-table-column prop="dsId" label="数据源" width="150"/>
         <el-table-column prop="question" label="问题描述" show-overflow-tooltip/>
         <el-table-column prop="description" label="示例SQL" show-overflow-tooltip/>
-        <el-table-column prop="enabledFlag" label="是否启用，0否；1是" show-overflow-tooltip>
+        <el-table-column prop="enabledFlag" label="是否启用" width="100">
           <template #default="scope">
-            <dict-tag :options="common_status" :value="scope.row.enabledFlag"></dict-tag>
+            <dict-tag :options="yes_no_type" :value="scope.row.enabledFlag"></dict-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="createTime" label="创建时间" sortable="custom" show-overflow-tooltip/>
-        <el-table-column prop="updateTime" label="更新时间" show-overflow-tooltip/>
+        <el-table-column prop="createTime" label="创建时间" sortable="custom"  width="200"/>
+        <el-table-column prop="updateTime" label="更新时间" width="200"/>
         <el-table-column label="操作" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" text type="primary" v-auth="'agi_sqlTrain_edit'"
@@ -93,7 +89,7 @@ import {useDict} from '/@/hooks/dict';
 const FormDialog = defineAsyncComponent(() => import('./form.vue'));
 // 定义查询字典
 
-const {common_status} = useDict('common_status')
+const {yes_no_type} = useDict('yes_no_type')
 // 定义变量内容
 const formDialogRef = ref()
 const excelUploadRef = ref();

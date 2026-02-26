@@ -41,7 +41,7 @@
         <el-table-column type="index" label="#" width="40"/>
         <el-table-column prop="name" label="服务器名称" show-overflow-tooltip/>
         <el-table-column prop="description" label="描述" show-overflow-tooltip/>
-        <el-table-column prop="transport" label="传输类型" show-overflow-tooltip>
+        <el-table-column prop="transport" label="传输类型" width="150">
           <template #default="scope">
             <dict-tag :options="agi_mcp_transport" :value="scope.row.transport"></dict-tag>
           </template>
@@ -50,14 +50,14 @@
         <!--          <el-table-column prop="command" label="命令（stdio）"  show-overflow-tooltip/>-->
         <!--          <el-table-column prop="timeout" label="HTTP超时（秒）"  show-overflow-tooltip/>-->
         <!--          <el-table-column prop="sseReadTimeout" label="SSE超时（秒）"  show-overflow-tooltip/>-->
-        <el-table-column prop="enabledFlag" label="是否启用" show-overflow-tooltip>
+        <el-table-column prop="enabledFlag" label="是否启用" width="100">
           <template #default="scope">
             <dict-tag :options="yes_no_type" :value="scope.row.enabledFlag"></dict-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="disabledTools" label="禁用工具" show-overflow-tooltip/>
-        <el-table-column prop="createTime" label="创建时间" show-overflow-tooltip/>
-        <el-table-column prop="updateTime" label="更新时间" show-overflow-tooltip/>
+        <!--        <el-table-column prop="disabledTools" label="禁用工具" show-overflow-tooltip/>-->
+        <el-table-column prop="createTime" label="创建时间" width="200"/>
+        <el-table-column prop="updateTime" label="更新时间" width="200"/>
         <el-table-column label="操作" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" text type="primary" v-auth="'agi_mcpServers_edit'"

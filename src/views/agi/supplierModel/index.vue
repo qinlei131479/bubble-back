@@ -38,23 +38,23 @@
                 @selection-change="selectionChangHandle"
                 @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center"/>
-        <el-table-column type="index" label="#" width="40"/>
-        <el-table-column prop="supplierName" label="供应商" show-overflow-tooltip/>
-        <el-table-column prop="name" label="模型名称" show-overflow-tooltip/>
-        <el-table-column prop="baseModel" label="模型别名" show-overflow-tooltip/>
-        <el-table-column prop="modelType" label="模型类型" show-overflow-tooltip>
+        <el-table-column type="index" label="#" width="50"/>
+        <el-table-column prop="supplierName" label="供应商" width="180"/>
+        <el-table-column prop="name" label="模型名称" width="220"/>
+        <el-table-column prop="baseModel" label="模型别名" width="220"/>
+        <el-table-column prop="modelType" label="模型类型" width="120">
           <template #default="scope">
             <dict-tag :options="agi_supplier_model_type" :value="scope.row.modelType"></dict-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="contextLength" label="上下文长度" show-overflow-tooltip/>
+        <el-table-column prop="contextLength" label="上下文长度" width="120"/>
         <el-table-column prop="description" label="模型描述" show-overflow-tooltip/>
-        <el-table-column prop="defaultFlag" label="默认模型" show-overflow-tooltip>
-          <template #default="scope">
-            <dict-tag :options="yes_no_type" :value="scope.row.defaultFlag"></dict-tag>
-          </template>
-        </el-table-column>
-        <el-table-column prop="extConfig" label="扩展配置" show-overflow-tooltip/>
+<!--        <el-table-column prop="defaultFlag" label="默认模型" show-overflow-tooltip>-->
+<!--          <template #default="scope">-->
+<!--            <dict-tag :options="yes_no_type" :value="scope.row.defaultFlag"></dict-tag>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
+<!--        <el-table-column prop="extConfig" label="扩展配置" show-overflow-tooltip/>-->
         <el-table-column label="操作" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" text type="primary" v-auth="'agi_supplierModel_edit'"
