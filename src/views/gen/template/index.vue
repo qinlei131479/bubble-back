@@ -32,10 +32,10 @@
           >
             {{ t('common.delBtn') }}
           </el-button>
-          <el-button @click="onlineUpdate" class="ml10" icon="download" plain :disabled="updateDisabled"
-                     v-auth="'codegen_template_add'">
-            更新
-          </el-button>
+          <!--          <el-button @click="onlineUpdate" class="ml10" icon="download" plain :disabled="updateDisabled"-->
+          <!--                     v-auth="'codegen_template_add'">-->
+          <!--            更新-->
+          <!--          </el-button>-->
           <right-toolbar
               :export="'codegen_template_export'"
               @exportExcel="exportExcel"
@@ -57,10 +57,11 @@
       >
         <el-table-column align="center" type="selection" width="40"/>
         <el-table-column :label="t('template.index')" type="index" width="60"/>
-        <el-table-column :label="t('template.templateName')" prop="templateName" show-overflow-tooltip/>
+        <el-table-column :label="t('template.templateName')" prop="templateName" width="200"/>
         <el-table-column :label="t('template.generatorPath')" prop="generatorPath" show-overflow-tooltip/>
-        <el-table-column :label="t('template.desc')" prop="templateDesc" show-overflow-tooltip/>
-        <el-table-column :label="t('template.createTime')" prop="createTime" show-overflow-tooltip/>
+        <el-table-column :label="t('template.desc')" prop="templateDesc" width="200"/>
+        <el-table-column :label="t('template.updateTime')" prop="updateTime" width="200"/>
+        <el-table-column :label="t('template.createTime')" prop="createTime" width="200"/>
         <el-table-column :label="t('common.action')" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" @click="formDialogRef.openDialog(scope.row.id)" text type="primary"
@@ -106,7 +107,7 @@ const multiple = ref(true);
 const state: BasicTableProps = reactive<BasicTableProps>({
   queryForm: {},
   pageList: fetchList,
-  descs: ['create_time'],
+  ascs: ['id'],
 });
 
 //  table hook
