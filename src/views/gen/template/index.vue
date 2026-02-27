@@ -60,8 +60,8 @@
         <el-table-column :label="t('template.templateName')" prop="templateName" width="200"/>
         <el-table-column :label="t('template.generatorPath')" prop="generatorPath" show-overflow-tooltip/>
         <el-table-column :label="t('template.desc')" prop="templateDesc" width="200"/>
-        <el-table-column :label="t('template.updateTime')" prop="updateTime" width="200"/>
-        <el-table-column :label="t('template.createTime')" prop="createTime" width="200"/>
+        <el-table-column :label="t('common.updateTime')" prop="updateTime" width="200"/>
+        <el-table-column :label="t('common.createTime')" prop="createTime" width="200"/>
         <el-table-column :label="t('common.action')" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" @click="formDialogRef.openDialog(scope.row.id)" text type="primary"

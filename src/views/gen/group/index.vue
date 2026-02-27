@@ -55,7 +55,8 @@
 				<el-table-column :label="t('group.index')" type="index" width="60" />
 				<el-table-column :label="t('group.groupName')" prop="groupName" show-overflow-tooltip />
 				<el-table-column :label="t('group.groupDesc')" prop="groupDesc" show-overflow-tooltip />
-				<el-table-column :label="t('group.createTime')" prop="createTime" show-overflow-tooltip />
+        <el-table-column :label="t('common.updateTime')" prop="updateTime" show-overflow-tooltip />
+				<el-table-column :label="t('common.createTime')" prop="createTime" show-overflow-tooltip />
 				<el-table-column :label="t('common.action')" width="150">
 					<template #default="scope">
 						<el-button icon="edit-pen" @click="formDialogRef.openDialog(scope.row.id)" text type="primary" v-auth="'codegen_group_edit'"
@@ -98,7 +99,7 @@ const multiple = ref(true);
 const state: BasicTableProps = reactive<BasicTableProps>({
 	queryForm: {},
 	pageList: fetchList,
-	descs: ['create_time'],
+  ascs: ['create_time'],
 });
 
 //  table hook

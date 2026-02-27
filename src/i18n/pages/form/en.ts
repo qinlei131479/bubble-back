@@ -24,6 +24,8 @@ export default {
 		confirmButtonText: 'Confirm',
 		cancelButtonText: 'Cancel',
 		download: 'Download',
+		updateTime: 'updateTime',
+		createTime: 'createTime',
 	},
 	message: {
 		box: {

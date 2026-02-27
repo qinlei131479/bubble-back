@@ -23,6 +23,8 @@ export default {
 		confirmButtonText: '确认',
 		cancelButtonText: '取消',
 		download: '下载',
+		updateTime: '更新时间',
+		createTime: '创建时间',
 	},
 	message: {
 		box: {
