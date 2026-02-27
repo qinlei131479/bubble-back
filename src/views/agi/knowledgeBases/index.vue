@@ -32,19 +32,13 @@
                 @selection-change="selectionChangHandle"
                 @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center"/>
-        <el-table-column type="index" label="#" width="40"/>
-        <el-table-column prop="dbId" label="数据库ID" show-overflow-tooltip/>
-        <el-table-column prop="name" label="知识库名称" show-overflow-tooltip/>
+        <el-table-column type="index" label="#" width="50"/>
+        <el-table-column prop="dbId" label="数据库" width="200"/>
+        <el-table-column prop="name" label="知识库名称" width="300"/>
         <el-table-column prop="description" label="知识库描述" show-overflow-tooltip/>
-        <el-table-column prop="kbType" label="知识库类型" show-overflow-tooltip/>
-        <el-table-column prop="embedInfo" label="向量信息" show-overflow-tooltip/>
-        <el-table-column prop="llmInfo" label="大模型信息" show-overflow-tooltip/>
-        <el-table-column prop="queryParams" label="查询参数" show-overflow-tooltip/>
-        <el-table-column prop="additionalParams" label="扩展参数" show-overflow-tooltip/>
-        <el-table-column prop="shareConfig" label="分享配置" show-overflow-tooltip/>
-        <el-table-column prop="sampleQuestions" label="样例问题" show-overflow-tooltip/>
-        <el-table-column prop="createdAt" label="创建时间" show-overflow-tooltip/>
-        <el-table-column prop="updatedAt" label="更新时间" show-overflow-tooltip/>
+        <el-table-column prop="kbType" label="知识库类型" width="150"/>
+        <el-table-column prop="createdAt" label="创建时间" width="200"/>
+        <el-table-column prop="updatedAt" label="更新时间" width="200"/>
         <el-table-column label="操作" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" text type="primary" v-auth="'agi_knowledgeBases_edit'"

@@ -3,8 +3,8 @@
     <div class="layout-padding-auto layout-padding-view">
       <el-row v-show="showSearch">
         <el-form :model="state.queryForm" ref="queryRef" :inline="true" @keyup.enter="getDataList">
-          <el-form-item label="表ID" prop="tableId">
-            <el-select v-model="state.queryForm.tableId" placeholder="请选择表ID">
+          <el-form-item label="数据表" prop="tableId">
+            <el-select v-model="state.queryForm.tableId" placeholder="请选择表">
               <el-option label="请选择">0</el-option>
             </el-select>
           </el-form-item>
@@ -16,10 +16,6 @@
       </el-row>
       <el-row>
         <div class="mb8" style="width: 100%">
-          <el-button icon="folder-add" type="primary" class="ml10" @click="formDialogRef.openDialog()"
-                     v-auth="'agi_datasourceTableField_add'">
-            新 增
-          </el-button>
           <el-button plain :disabled="multiple" icon="Delete" type="primary"
                      v-auth="'agi_datasourceTableField_del'" @click="handleDelete(selectObjs)">
             删 除
@@ -34,25 +30,15 @@
                 @selection-change="selectionChangHandle"
                 @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center"/>
-        <el-table-column type="index" label="#" width="40"/>
-        <el-table-column prop="dsId" label="数据源ID" show-overflow-tooltip/>
-        <el-table-column prop="tableId" label="表ID" show-overflow-tooltip/>
-        <el-table-column prop="fieldName" label="字段名称" show-overflow-tooltip/>
-        <el-table-column prop="fieldType" label="字段类型" show-overflow-tooltip/>
-        <el-table-column prop="fieldComment" label="字段注释" show-overflow-tooltip/>
+        <el-table-column type="index" label="#" width="50"/>
+        <el-table-column prop="dsId" label="数据源" width="200"/>
+        <el-table-column prop="tableId" label="数据表" width="200"/>
+        <el-table-column prop="fieldName" label="字段名称" width="200"/>
+        <el-table-column prop="fieldType" label="字段类型" width="200"/>
+        <el-table-column prop="fieldComment" label="字段注释" width="300"/>
         <el-table-column prop="customComment" label="字段注释(自定义)" show-overflow-tooltip/>
-        <el-table-column prop="weight" label="字段排序，越小越靠前" show-overflow-tooltip/>
-        <el-table-column prop="updateTime" label="更新时间" show-overflow-tooltip/>
-        <el-table-column label="操作" width="150">
-          <template #default="scope">
-            <el-button icon="edit-pen" text type="primary" v-auth="'agi_datasourceTableField_edit'"
-                       @click="formDialogRef.openDialog(scope.row.id)">编辑
-            </el-button>
-            <el-button icon="delete" text type="primary" v-auth="'agi_datasourceTableField_del'"
-                       @click="handleDelete([scope.row.id])">删除
-            </el-button>
-          </template>
-        </el-table-column>
+        <el-table-column prop="weight" label="权重" width="100"/>
+        <el-table-column prop="updateTime" label="更新时间" width="200"/>
       </el-table>
       <pagination @size-change="sizeChangeHandle" @current-change="currentChangeHandle" v-bind="state.pagination"/>
     </div>

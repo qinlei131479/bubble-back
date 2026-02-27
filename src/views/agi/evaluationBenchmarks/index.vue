@@ -18,10 +18,6 @@
                      v-auth="'agi_evaluationBenchmarks_add'">
             新 增
           </el-button>
-          <el-button plain icon="upload-filled" type="primary" class="ml10" @click="excelUploadRef.show()"
-                     v-auth="'sys_user_add'">
-            导 入
-          </el-button>
           <el-button plain :disabled="multiple" icon="Delete" type="primary"
                      v-auth="'agi_evaluationBenchmarks_del'" @click="handleDelete(selectObjs)">
             删 除
@@ -36,18 +32,16 @@
                 @selection-change="selectionChangHandle"
                 @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center"/>
-        <el-table-column type="index" label="#" width="40"/>
-        <el-table-column prop="benchmarkId" label="基准ID" show-overflow-tooltip/>
-        <el-table-column prop="dbId" label="数据库ID" show-overflow-tooltip/>
+        <el-table-column type="index" label="#" width="50"/>
+        <el-table-column prop="dbId" label="数据库" show-overflow-tooltip/>
         <el-table-column prop="name" label="基准名称" show-overflow-tooltip/>
         <el-table-column prop="description" label="描述" show-overflow-tooltip/>
         <el-table-column prop="questionNum" label="问题数量" show-overflow-tooltip/>
         <el-table-column prop="hasGoldChunks" label="分块" show-overflow-tooltip/>
         <el-table-column prop="hasGoldAnswers" label="回答" show-overflow-tooltip/>
         <el-table-column prop="dataFilePath" label="文件路径" show-overflow-tooltip/>
-        <el-table-column prop="createdBy" label="创建人" show-overflow-tooltip/>
-        <el-table-column prop="createdAt" label="创建时间" show-overflow-tooltip/>
-        <el-table-column prop="updatedAt" label="更新时间" show-overflow-tooltip/>
+        <el-table-column prop="createdAt" label="创建时间" width="200"/>
+        <el-table-column prop="updatedAt" label="更新时间" width="200"/>
         <el-table-column label="操作" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" text type="primary" v-auth="'agi_evaluationBenchmarks_edit'"

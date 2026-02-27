@@ -33,22 +33,16 @@
                 @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center"/>
         <el-table-column type="index" label="#" width="40"/>
-        <el-table-column prop="fileId" label="文件ID" show-overflow-tooltip/>
-        <el-table-column prop="dbId" label="数据库ID" show-overflow-tooltip/>
-        <el-table-column prop="parentId" label="父ID" show-overflow-tooltip/>
+        <el-table-column prop="dbId" label="数据库" width="200"/>
         <el-table-column prop="filename" label="文件名称" show-overflow-tooltip/>
         <el-table-column prop="originalFilename" label="文件原名" show-overflow-tooltip/>
-        <el-table-column prop="fileType" label="文件类型" show-overflow-tooltip/>
+        <el-table-column prop="fileType" label="文件类型" width="100"/>
         <el-table-column prop="path" label="文件路径" show-overflow-tooltip/>
-        <el-table-column prop="minioUrl" label="minio地址" show-overflow-tooltip/>
-        <el-table-column prop="markdownFile" label="markdown文件" show-overflow-tooltip/>
-        <el-table-column prop="status" label="状态" show-overflow-tooltip/>
-        <el-table-column prop="fileSize" label="文件大小" show-overflow-tooltip/>
-        <el-table-column prop="contentType" label="内容类型" show-overflow-tooltip/>
-        <el-table-column prop="processingParams" label="处理参数" show-overflow-tooltip/>
-        <el-table-column prop="folderFlag" label="是否目录，0否1是" show-overflow-tooltip/>
-        <el-table-column prop="createdAt" label="创建时间" show-overflow-tooltip/>
-        <el-table-column prop="updatedAt" label="更新时间" show-overflow-tooltip/>
+        <el-table-column prop="status" label="状态" width="100"/>
+        <el-table-column prop="fileSize" label="文件大小" width="100"/>
+        <el-table-column prop="contentType" label="内容类型" width="100"/>
+        <el-table-column prop="createdAt" label="创建时间" width="200"/>
+        <el-table-column prop="updatedAt" label="更新时间" width="200"/>
         <el-table-column label="操作" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" text type="primary" v-auth="'agi_knowledgeFiles_edit'"

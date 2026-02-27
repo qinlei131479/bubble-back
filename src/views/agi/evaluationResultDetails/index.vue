@@ -33,7 +33,6 @@
                 @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center"/>
         <el-table-column type="index" label="#" width="40"/>
-        <el-table-column prop="taskId" label="任务ID" show-overflow-tooltip/>
         <el-table-column prop="queryIndex" label="查询索引" show-overflow-tooltip/>
         <el-table-column prop="queryText" label="查询内容" show-overflow-tooltip/>
         <el-table-column prop="goldChunkIds" label="正确分块IDS" show-overflow-tooltip/>

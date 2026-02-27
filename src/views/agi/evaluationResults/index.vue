@@ -21,18 +21,16 @@
                 @selection-change="selectionChangHandle"
                 @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center"/>
-        <el-table-column type="index" label="#" width="40"/>
-        <el-table-column prop="taskId" label="任务ID" show-overflow-tooltip/>
-        <el-table-column prop="dbId" label="数据库ID" show-overflow-tooltip/>
-        <el-table-column prop="benchmarkId" label="评估基准ID" show-overflow-tooltip/>
+        <el-table-column type="index" label="#" width="50"/>
+        <el-table-column prop="benchmarkId" label="评估基准" show-overflow-tooltip/>
         <el-table-column prop="status" label="状态" show-overflow-tooltip/>
         <el-table-column prop="retrievalConfig" label="检索配置" show-overflow-tooltip/>
         <el-table-column prop="metrics" label="指标" show-overflow-tooltip/>
         <el-table-column prop="overallScore" label="得分" show-overflow-tooltip/>
         <el-table-column prop="totalQuestions" label="统计数量" show-overflow-tooltip/>
         <el-table-column prop="completedQuestions" label="完成数量" show-overflow-tooltip/>
-        <el-table-column prop="completedAt" label="完成时间" show-overflow-tooltip/>
-        <el-table-column prop="createdAt" label="创建时间" show-overflow-tooltip/>
+        <el-table-column prop="completedAt" label="完成时间" width="200"/>
+        <el-table-column prop="createdAt" label="创建时间" width="200"/>
         <el-table-column label="操作" width="150">
           <template #default="scope">
             <el-button icon="edit-pen" text type="primary" v-auth="'agi_evaluationResults_edit'"
