@@ -78,6 +78,7 @@ import {useMessage} from "/@/hooks/message";
 import {getObj, addObj, putObj, validateExist} from '/@/api/agi/terminology'
 import {rule} from '/@/utils/validate';
 import {getObj as getDatasource} from "/@/api/agi/datasource";
+import {InputInstance} from "element-plus";
 
 const emit = defineEmits(['refresh']);
 
@@ -131,25 +132,24 @@ const openDialog = (id: string) => {
 };
 
 const handleClose = (tag: string) => {
-  form.words.splice(form.words.indexOf(tag), 1);
+  form.words.splice(form.words.indexOf(tag), 1)
 };
 
-const saveTagInputRef = ref(null)
+const saveTagInputRef = ref<InputInstance>()
 
 const showInput = () => {
-  inputVisible.value = true;
+  inputVisible.value = true
   nextTick(() => {
-    saveTagInputRef.value?.focus()
+    saveTagInputRef.value!.input!.focus()
   })
 };
 
 const handleInputConfirm = () => {
-  let value = inputValue.value;
-  if (value) {
-    form.words.push(value);
+  if (inputValue.value) {
+    form.words.push(inputValue.value)
   }
-  inputVisible.value = false;
-  inputValue.value = '';
+  inputVisible.value = false
+  inputValue.value = ''
 };
 
 
