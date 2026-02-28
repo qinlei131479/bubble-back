@@ -6,6 +6,12 @@
           <el-form-item label="模型名称" prop="name">
             <el-input placeholder="请输入模型名称" v-model="state.queryForm.name"/>
           </el-form-item>
+          <el-form-item label="供应商" prop="supplierId">
+            <el-select class="w100" clearable placeholder="请选择供应商" v-model="state.queryForm.supplierId">
+              <el-option :key="item.id" :label="item.name + ' ['+item.description+']'" :value="item.id"
+                         v-for="item in supplierData"/>
+            </el-select>
+          </el-form-item>
           <el-form-item label="模型类型" prop="modelType">
             <el-select v-model="state.queryForm.modelType" placeholder="请选择模型类型">
               <el-option :key="item.value" :label="item.label" :value="item.value"
@@ -85,7 +91,7 @@
 
 <script setup lang="ts" name="systemSupplierModel">
 import {BasicTableProps, useTable} from "/@/hooks/table";
-import {fetchList, delObjs} from "/@/api/agi/supplierModel";
+import {fetchList, delObjs, getSupplierObj} from "/@/api/agi/supplierModel";
 import {useMessage, useMessageBox} from "/@/hooks/message";
 import {useDict} from '/@/hooks/dict';
 
@@ -108,6 +114,15 @@ const state: BasicTableProps = reactive<BasicTableProps>({
   pageList: fetchList
 })
 
+const supplierData = ref<any[]>([]);
+
+// 初始化供应商数据
+onMounted(() => {
+  // 获取供应商数据
+  getSupplierObj({status: 0}).then((res) => {
+    supplierData.value = res.data;
+  });
+});
 //  table hook
 const {
   getDataList,
