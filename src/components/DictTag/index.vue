@@ -12,8 +12,7 @@
 					:index="index"
 					:type="item.elTagType === 'primary' ? '' : item.elTagType"
 					:class="item.elTagClass"
-					>{{ item.label || item }}</el-tag
-				>
+					>{{ item.label || item }}</el-tag>
 			</template>
 		</template>
 	</div>

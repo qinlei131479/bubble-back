@@ -3,9 +3,10 @@
     <div class="layout-padding-auto layout-padding-view">
       <el-row v-show="showSearch">
         <el-form :model="state.queryForm" ref="queryRef" :inline="true" @keyup.enter="getDataList">
-          <el-form-item label="数据源ID" prop="dsId">
-            <el-select v-model="state.queryForm.dsId" placeholder="请选择数据源ID">
-              <el-option label="默认" :key="0" value="0">0</el-option>
+          <el-form-item label="数据源" prop="dsId">
+            <el-select class="w100" clearable placeholder="请选择数据源" v-model="state.queryForm.dsId">
+              <el-option :key="item.id" :label="item.name" :value="item.id"
+                         v-for="item in datasourceData"/>
             </el-select>
           </el-form-item>
           <el-form-item label="是否启用" prop="enabledFlag">
@@ -41,7 +42,7 @@
                 @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center"/>
         <el-table-column type="index" label="#" width="50"/>
-        <el-table-column prop="dsId" label="数据源" width="150"/>
+        <el-table-column prop="dsName" label="数据源" width="150"/>
         <el-table-column prop="question" label="问题描述" show-overflow-tooltip/>
         <el-table-column prop="description" label="示例SQL" show-overflow-tooltip/>
         <el-table-column prop="enabledFlag" label="是否启用" width="100">
@@ -82,8 +83,10 @@
 <script setup lang="ts" name="systemSqlTrain">
 import {BasicTableProps, useTable} from "/@/hooks/table";
 import {fetchList, delObjs} from "/@/api/agi/sqlTrain";
+import {getObj as getDatasource } from "/@/api/agi/datasource";
 import {useMessage, useMessageBox} from "/@/hooks/message";
 import {useDict} from '/@/hooks/dict';
+import {getSupplierObj} from "/@/api/agi/supplierModel";
 
 // 引入组件
 const FormDialog = defineAsyncComponent(() => import('./form.vue'));
@@ -150,4 +153,15 @@ const handleDelete = async (ids: string[]) => {
     useMessage().error(err.msg);
   }
 };
+
+
+const datasourceData = ref<any[]>([]);
+
+// 初始化
+onMounted(() => {
+  // 获取数据源
+  getDatasource({}).then((res) => {
+    datasourceData.value = res.data;
+  });
+});
 </script>

@@ -4,9 +4,10 @@
     <el-form ref="dataFormRef" :model="form" :rules="dataRules" formDialogRef label-width="90px" v-loading="loading">
       <el-row :gutter="24">
         <el-col :span="24" class="mb20">
-          <el-form-item label="数据源ID" prop="dsId">
-            <el-select v-model="form.dsId" placeholder="请选择数据源ID">
-              <el-option label="请选择" value="0" :key="0">0</el-option>
+          <el-form-item label="数据源" prop="dsId">
+            <el-select v-model="form.dsId" clearable placeholder="请选择数据源">
+              <el-option :key="item.id" :label="item.name" :value="item.id"
+                         v-for="item in datasourceData"/>
             </el-select>
           </el-form-item>
         </el-col>
@@ -48,6 +49,7 @@
 import {useDict} from '/@/hooks/dict';
 import {useMessage} from "/@/hooks/message";
 import {getObj, addObj, putObj, validateExist} from '/@/api/agi/sqlTrain'
+import {getObj as getDatasource} from "/@/api/agi/datasource";
 import {rule} from '/@/utils/validate';
 
 const emit = defineEmits(['refresh']);
@@ -71,7 +73,7 @@ const form = reactive({
 
 // 定义校验规则
 const dataRules = ref({
-  // dsId: [{required: true, message: '数据源ID不能为空', trigger: 'blur'}, { validator: rule.number, trigger: 'blur' }],
+  dsId: [{required: true, message: '数据源不能为空', trigger: 'blur'}, { validator: rule.number, trigger: 'blur' }],
   question: [{required: true, message: '问题描述不能为空', trigger: 'blur'}],
   enabledFlag: [{required: true, message: '是否启用不能为空', trigger: 'blur'}],
 })
@@ -85,7 +87,7 @@ const openDialog = (id: string) => {
   nextTick(() => {
     dataFormRef.value?.resetFields();
   });
-
+  getDatasourceData()
   // 获取sqlTrain信息
   if (id) {
     form.id = id
@@ -123,6 +125,14 @@ const getSqlTrainData = (id: string) => {
     loading.value = false
   })
 };
+
+const datasourceData = ref<any[]>([]);
+
+const getDatasourceData = () => {
+  getDatasource({}).then((res) => {
+    datasourceData.value = res.data;
+  });
+}
 
 // 暴露变量
 defineExpose({

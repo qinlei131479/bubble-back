@@ -34,9 +34,18 @@
         <el-table-column type="selection" width="40" align="center"/>
         <el-table-column type="index" label="#" width="50"/>
         <el-table-column prop="word" label="术语名称" width="150"/>
-        <el-table-column prop="wordTo" label="同义词" show-overflow-tooltip/>
+        <el-table-column prop="words" label="同义词" show-overflow-tooltip>
+          <template #default="scope">
+            <el-tag v-for="item in scope.row.words" style="margin-left: 10px;">{{item}}</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="description" label="术语描述" show-overflow-tooltip/>
-        <el-table-column prop="datasourceIds" label="生效数据源" width="150"/>
+        <el-table-column prop="datasourceIds" label="生效数据源" width="150">
+          <template #default="scope">
+            <span v-if="scope.row.specificDs==='1'">{{scope.row.datasourceNames}}</span>
+            <span v-else>全部数据源</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="enabledFlag" label="是否启用" width="100">
           <template #default="scope">
             <dict-tag :options="yes_no_type" :value="scope.row.enabledFlag"></dict-tag>
