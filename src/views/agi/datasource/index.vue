@@ -41,7 +41,13 @@
                 @sort-change="sortChangeHandle">
         <el-table-column type="selection" width="40" align="center"/>
         <el-table-column type="index" label="#" width="50"/>
-        <el-table-column prop="name" label="数据源名称" show-overflow-tooltip/>
+        <el-table-column prop="name" label="数据源名称" show-overflow-tooltip>
+          <template #default="scope">
+            <el-button link type="primary" @click="handleViewTables(scope.row)">
+              {{ scope.row.name }}
+            </el-button>
+          </template>
+        </el-table-column>
         <el-table-column prop="username" label="用户名" width="200"/>
         <el-table-column prop="dsType" label="数据库类型" width="150">
           <template #default="scope">
@@ -69,6 +75,9 @@
     <!-- 编辑、新增  -->
     <form-dialog ref="formDialogRef" @refresh="getDataList(false)"/>
 
+    <!-- 表结构详情 -->
+    <table-detail ref="tableDetailRef" @refresh="getDataList(false)"/>
+
     <!-- 导入excel (需要在 upms-biz/resources/file 下维护模板) -->
     <upload-excel
         ref="excelUploadRef"
@@ -88,10 +97,12 @@ import {useDict} from '/@/hooks/dict';
 
 // 引入组件
 const FormDialog = defineAsyncComponent(() => import('./form.vue'));
+const TableDetail = defineAsyncComponent(() => import('./tableDetail.vue'));
 // 定义查询字典
 const {aig_ds_type} = useDict('aig_ds_type')
 // 定义变量内容
 const formDialogRef = ref()
+const tableDetailRef = ref()
 const excelUploadRef = ref();
 // 搜索变量
 const queryRef = ref()
@@ -114,6 +125,11 @@ const {
   downBlobFile,
   tableStyle
 } = useTable(state)
+
+// 查看表结构详情
+const handleViewTables = (row: any) => {
+  tableDetailRef.value?.openDialog(row);
+}
 
 // 清空搜索条件
 const resetQuery = () => {

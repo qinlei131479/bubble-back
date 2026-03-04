@@ -6,11 +6,11 @@ import request from "/@/utils/request"
  * @returns {Promise} 请求的 Promise 分页对象。
  */
 export function fetchList(query?: Object) {
-  return request({
-    url: '/agi/datasource/page',
-    method: 'get',
-    params: query
-  })
+    return request({
+        url: '/agi/datasource/page',
+        method: 'get',
+        params: query
+    })
 }
 
 /**
@@ -19,11 +19,11 @@ export function fetchList(query?: Object) {
  * @returns {Promise} 请求的 Promise 对象 （true/false）。
  */
 export function addObj(obj?: Object) {
-  return request({
-    url: '/agi/datasource',
-    method: 'post',
-    data: obj
-  })
+    return request({
+        url: '/agi/datasource',
+        method: 'post',
+        data: obj
+    })
 }
 
 /**
@@ -32,11 +32,11 @@ export function addObj(obj?: Object) {
  * @returns {Promise} 请求的 Promise 对象数组。
  */
 export function getObj(obj?: Object) {
-  return request({
-    url: '/agi/datasource/details',
-    method: 'get',
-    params: obj
-  })
+    return request({
+        url: '/agi/datasource/details',
+        method: 'get',
+        params: obj
+    })
 }
 
 /**
@@ -45,11 +45,11 @@ export function getObj(obj?: Object) {
  * @returns {Promise} 请求的 Promise 对象。
  */
 export function delObjs(ids?: Object) {
-  return request({
-    url: '/agi/datasource',
-    method: 'delete',
-    data: ids
-  })
+    return request({
+        url: '/agi/datasource',
+        method: 'delete',
+        data: ids
+    })
 }
 
 /**
@@ -58,11 +58,11 @@ export function delObjs(ids?: Object) {
  * @returns {Promise} 请求的 Promise 对象。
  */
 export function putObj(obj?: Object) {
-  return request({
-    url: '/agi/datasource',
-    method: 'put',
-    data: obj
-  })
+    return request({
+        url: '/agi/datasource',
+        method: 'put',
+        data: obj
+    })
 }
 
 /**
@@ -71,11 +71,11 @@ export function putObj(obj?: Object) {
  * @returns {Promise} 请求的 Promise 对象。
  */
 export function testConnection(data?: Object) {
-  return request({
-    url: '/agi/datasource/test',
-    method: 'post',
-    data: data
-  })
+    return request({
+        url: '/agi/datasource/test',
+        method: 'post',
+        data: data
+    })
 }
 
 /**
@@ -84,11 +84,11 @@ export function testConnection(data?: Object) {
  * @returns {Promise} 请求的 Promise 对象。
  */
 export function fetchTablesByConf(data?: Object) {
-  return request({
-    url: '/agi/datasource/tables',
-    method: 'post',
-    data: data
-  })
+    return request({
+        url: '/agi/datasource/tables',
+        method: 'post',
+        data: data
+    })
 }
 
 /**
@@ -98,11 +98,11 @@ export function fetchTablesByConf(data?: Object) {
  * @returns {Promise} 请求的 Promise 对象。
  */
 export function syncTables(dsId: string | number, tableNames?: string[]) {
-  return request({
-    url: `/agi/datasource/sync/${dsId}`,
-    method: 'post',
-    data: tableNames || []
-  })
+    return request({
+        url: `/agi/datasource/sync/${dsId}`,
+        method: 'post',
+        data: tableNames || []
+    })
 }
 
 /**
@@ -123,16 +123,70 @@ export function syncTables(dsId: string | number, tableNames?: string[]) {
  * ]
  */
 export function validateExist(rule: any, value: any, callback: any, isEdit: boolean) {
-  if (isEdit) {
-    return callback();
-  }
-
-  getObj({ [rule.field]: value }).then((response) => {
-    const result = response.data;
-    if (result !== null && result.length > 0) {
-      callback(new Error('数据已经存在'));
-    } else {
-      callback();
+    if (isEdit) {
+        return callback();
     }
-  });
+
+    getObj({[rule.field]: value}).then((response) => {
+        const result = response.data;
+        if (result !== null && result.length > 0) {
+            callback(new Error('数据已经存在'));
+        } else {
+            callback();
+        }
+    });
+}
+
+
+/**
+ * 更新一个已存在的对象。
+ * @param {Object} [obj] - 要更新的对象。
+ * @returns {Promise} 请求的 Promise 对象。
+ */
+export function putTableObj(obj?: Object) {
+    return request({
+        url: '/agi/datasource/updateTable',
+        method: 'put',
+        data: obj
+    })
+}
+
+/**
+ * 根据查询参数获取对象详情。
+ * @param {Object} [obj] - 查询参数。
+ * @returns {Promise} 请求的 Promise 对象数组。
+ */
+export function getTableObj(obj?: Object) {
+    return request({
+        url: '/agi/datasource/detailsTable',
+        method: 'get',
+        params: obj
+    })
+}
+
+
+/**
+ * 根据查询参数获取对象详情。
+ * @param {Object} [obj] - 查询参数。
+ * @returns {Promise} 请求的 Promise 对象数组。
+ */
+export function getFieldObj(obj?: Object) {
+    return request({
+        url: '/agi/datasource/detailsTableField',
+        method: 'get',
+        params: obj
+    })
+}
+
+/**
+ * 更新一个已存在的对象。
+ * @param {Object} [obj] - 要更新的对象。
+ * @returns {Promise} 请求的 Promise 对象。
+ */
+export function putFieldObj(obj?: Object) {
+    return request({
+        url: '/agi/datasource/updateTableField',
+        method: 'put',
+        data: obj
+    })
 }
