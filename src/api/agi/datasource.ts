@@ -66,12 +66,52 @@ export function putObj(obj?: Object) {
 }
 
 /**
+ * 测试数据源连接。
+ * @param {Object} [data] - 数据源配置信息。
+ * @returns {Promise} 请求的 Promise 对象。
+ */
+export function testConnection(data?: Object) {
+  return request({
+    url: '/agi/datasource/test',
+    method: 'post',
+    data: data
+  })
+}
+
+/**
+ * 根据数据源配置获取数据库表列表。
+ * @param {Object} [data] - 数据源配置信息。
+ * @returns {Promise} 请求的 Promise 对象。
+ */
+export function fetchTablesByConf(data?: Object) {
+  return request({
+    url: '/agi/datasource/tables',
+    method: 'post',
+    data: data
+  })
+}
+
+/**
+ * 同步数据源表结构到本地数据库。
+ * @param {string|number} dsId - 数据源ID。
+ * @param {string[]} tableNames - 选中的表名列表。
+ * @returns {Promise} 请求的 Promise 对象。
+ */
+export function syncTables(dsId: string | number, tableNames?: string[]) {
+  return request({
+    url: `/agi/datasource/sync/${dsId}`,
+    method: 'post',
+    data: tableNames || []
+  })
+}
+
+/**
  * 验证某个字段的值是否已经存在。
  * @param {Object} rule - 验证规则对象。
  * @param {*} value - 要验证的值。
  * @param {Function} callback - 验证完成后的回调函数。
  * @param {boolean} isEdit - 当前操作是否为编辑。
- * 
+ *
  * 示例用法：
  * 字段名: [
  *   {
@@ -96,5 +136,3 @@ export function validateExist(rule: any, value: any, callback: any, isEdit: bool
     }
   });
 }
-
-

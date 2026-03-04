@@ -7,7 +7,7 @@
             <el-input placeholder="请输入数据源名称" v-model="state.queryForm.name"/>
           </el-form-item>
           <el-form-item label="数据库类型" prop="dsType">
-            <el-select v-model="state.queryForm.modelType" placeholder="请选择类型">
+            <el-select v-model="state.queryForm.dsType" placeholder="请选择类型" clearable>
               <el-option :key="item.value" :label="item.label" :value="item.value"
                          v-for="item in aig_ds_type"/>
             </el-select>
