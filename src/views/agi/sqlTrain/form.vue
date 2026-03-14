@@ -73,7 +73,7 @@ const form = reactive({
 
 // 定义校验规则
 const dataRules = ref({
-  dsId: [{required: true, message: '数据源不能为空', trigger: 'blur'}, { validator: rule.number, trigger: 'blur' }],
+  dsId: [{required: true, message: '数据源不能为空', trigger: 'blur'}, {validator: rule.number, trigger: 'blur'}],
   question: [{required: true, message: '问题描述不能为空', trigger: 'blur'}],
   enabledFlag: [{required: true, message: '是否启用不能为空', trigger: 'blur'}],
 })
@@ -121,6 +121,7 @@ const getSqlTrainData = (id: string) => {
   loading.value = true
   getObj({id: id}).then((res: any) => {
     Object.assign(form, res.data[0])
+    form.enabledFlag = form.enabledFlag + ''
   }).finally(() => {
     loading.value = false
   })
