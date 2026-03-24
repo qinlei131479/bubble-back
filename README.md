@@ -1,7 +1,7 @@
 <p align="center" style="font-family: '楷体'; font-size: 30px;">智能如泡，聚变未来</p>
 
 <p align="center">
- <img src="https://img.shields.io/badge/AgetBubbles-0.1-success.svg" alt="Build Status">
+ <img src="https://img.shields.io/badge/Bubble-UI-0.1-success.svg" alt="Build Status">
  <img src="https://img.shields.io/badge/Spring%20Cloud-2025-blue.svg" alt="Coverage Status">
  <img src="https://img.shields.io/badge/Spring%20Boot-3.5-blue.svg" alt="Downloads">
  <img src="https://img.shields.io/badge/Vue-3.5-blue.svg" alt="Downloads">
