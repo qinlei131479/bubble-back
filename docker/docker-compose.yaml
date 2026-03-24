@@ -1,10 +1,10 @@
 services:
-  bubble-back:
+  bubble-ui:
     build:
       context: .
     restart: always
-    container_name: bubble-back
-    image: bubble-back
+    container_name: bubble-ui
+    image: bubble-ui
     networks:
       - spring_cloud_default
     external_links:
